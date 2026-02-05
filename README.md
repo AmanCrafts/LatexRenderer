@@ -87,11 +87,13 @@ The WebView approach uses a browser engine to render LaTeX formulas via the KaTe
    - Currency symbols ($500) are preserved as text
 
 **Advantages:**
+
 - Works on all platforms (iOS, Android, Web)
 - Full KaTeX feature support
 - No native code required
 
 **Disadvantages:**
+
 - Higher memory usage (each WebView has overhead)
 - Slower initial render (CDN fetch, JavaScript execution)
 - Scroll lag with many items in a list
@@ -108,6 +110,7 @@ The Native approach uses the JLaTeXMath library to render LaTeX directly on Andr
    - `renderToBase64Async()`: Async version of the above
 
 2. **Rendering Pipeline**:
+
    ```
    LaTeX String → JLatexMathDrawable → Bitmap → PNG → Base64 → Image Component
    ```
@@ -123,12 +126,14 @@ The Native approach uses the JLaTeXMath library to render LaTeX directly on Andr
    - Supports inline and block display modes
 
 **Advantages:**
+
 - Significantly faster rendering (10-50ms vs 100-300ms)
 - Lower memory per formula
 - Smoother scrolling in lists
 - Works offline after first build
 
 **Disadvantages:**
+
 - Android only (iOS would need a different library)
 - Requires development build (not Expo Go)
 - Some LaTeX features may differ from KaTeX
@@ -137,33 +142,33 @@ The Native approach uses the JLaTeXMath library to render LaTeX directly on Andr
 
 ### Core Components
 
-| File | Purpose |
-|------|---------|
-| `App.js` | Main navigation between WebView, Native, and Playground screens |
-| `LatexWebView.jsx` | WebView component that renders LaTeX using KaTeX |
-| `NativeLatexView.jsx` | Component that uses native rendering with WebView fallback |
-| `LatexPlayground.jsx` | Interactive LaTeX editor with live preview |
-| `KatexHtmlTemplate.js` | Generates HTML with KaTeX for WebView rendering |
-| `SampleLatex.js` | Sample formulas, categories, and parsing utilities |
-| `PerformanceLogger.js` | Tracks and reports render times and cache statistics |
+| File                   | Purpose                                                         |
+| ---------------------- | --------------------------------------------------------------- |
+| `App.js`               | Main navigation between WebView, Native, and Playground screens |
+| `LatexWebView.jsx`     | WebView component that renders LaTeX using KaTeX                |
+| `NativeLatexView.jsx`  | Component that uses native rendering with WebView fallback      |
+| `LatexPlayground.jsx`  | Interactive LaTeX editor with live preview                      |
+| `KatexHtmlTemplate.js` | Generates HTML with KaTeX for WebView rendering                 |
+| `SampleLatex.js`       | Sample formulas, categories, and parsing utilities              |
+| `PerformanceLogger.js` | Tracks and reports render times and cache statistics            |
 
 ### Native Module
 
-| File | Purpose |
-|------|---------|
-| `LatexNativeModule.kt` | Expo module exposing JLaTeXMath to JavaScript |
-| `app.plugin.js` | Expo config plugin to configure Gradle |
-| `expo-module.config.json` | Module configuration for Expo autolinking |
+| File                      | Purpose                                       |
+| ------------------------- | --------------------------------------------- |
+| `LatexNativeModule.kt`    | Expo module exposing JLaTeXMath to JavaScript |
+| `app.plugin.js`           | Expo config plugin to configure Gradle        |
+| `expo-module.config.json` | Module configuration for Expo autolinking     |
 
 ## Performance Comparison
 
-| Metric | WebView (KaTeX) | Native (JLaTeXMath) |
-|--------|-----------------|---------------------|
-| First Render | 150-400ms | 20-80ms |
-| Cached Render | 80-150ms | 5-15ms |
-| Memory per Formula | ~2-5MB | ~0.1-0.5MB |
-| List Scroll Performance | Moderate lag | Smooth |
-| Startup Time | Fast (no native) | Requires build |
+| Metric                  | WebView (KaTeX)  | Native (JLaTeXMath) |
+| ----------------------- | ---------------- | ------------------- |
+| First Render            | 150-400ms        | 20-80ms             |
+| Cached Render           | 80-150ms         | 5-15ms              |
+| Memory per Formula      | ~2-5MB           | ~0.1-0.5MB          |
+| List Scroll Performance | Moderate lag     | Smooth              |
+| Startup Time            | Fast (no native) | Requires build      |
 
 ## Sample Data
 

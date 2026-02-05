@@ -17,12 +17,12 @@ This guide walks you through setting up the LaTeX Renderer project from scratch.
 
 ### Required Software
 
-| Software | Minimum Version | Purpose |
-|----------|-----------------|---------|
-| Node.js | 18.x or later | JavaScript runtime |
-| npm | 9.x or later | Package manager |
-| Android Studio | Latest | Android SDK and emulator |
-| JDK | 17 | Java Development Kit |
+| Software       | Minimum Version | Purpose                  |
+| -------------- | --------------- | ------------------------ |
+| Node.js        | 18.x or later   | JavaScript runtime       |
+| npm            | 9.x or later    | Package manager          |
+| Android Studio | Latest          | Android SDK and emulator |
+| JDK            | 17              | Java Development Kit     |
 
 ### Android SDK Requirements
 
@@ -112,6 +112,7 @@ npx expo start
 ```
 
 Then:
+
 1. Install **Expo Go** on your Android device
 2. Scan the QR code from the terminal
 3. The app will load with WebView-based LaTeX rendering
@@ -194,9 +195,7 @@ The main Expo configuration file:
     "android": {
       "package": "com.latexrenderer.app"
     },
-    "plugins": [
-      ["./modules/latex-native/app.plugin.js"]
-    ]
+    "plugins": [["./modules/latex-native/app.plugin.js"]]
   }
 }
 ```
@@ -258,30 +257,31 @@ modules/latex-native/
 ### JavaScript API
 
 ```javascript
-import { isNativeAvailable, renderLatexToBase64 } from './modules/latex-native';
+import { isNativeAvailable, renderLatexToBase64 } from "./modules/latex-native";
 
 // Check if native rendering is available
 const available = isNativeAvailable();
 
 // Render LaTeX to Base64 image
 const result = await renderLatexToBase64(
-    '\\frac{a}{b}',  // LaTeX string
-    40,              // Font size
-    '#000000',       // Text color
-    '#ffffff'        // Background color
+  "\\frac{a}{b}", // LaTeX string
+  40, // Font size
+  "#000000", // Text color
+  "#ffffff", // Background color
 );
 
 if (result.success) {
-    // Use result.base64 as Image source
-    // result.width and result.height contain dimensions
+  // Use result.base64 as Image source
+  // result.width and result.height contain dimensions
 } else {
-    // Handle result.error
+  // Handle result.error
 }
 ```
 
 ### Expo Config Plugin
 
 The `app.plugin.js` automatically configures:
+
 - Settings.gradle: Includes the latex-native project
 - Build.gradle: Adds JitPack repository
 
