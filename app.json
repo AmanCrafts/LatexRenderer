@@ -3,6 +3,7 @@
     "name": "LatexRenderer",
     "slug": "LatexRenderer",
     "version": "1.0.0",
+    "scheme": "latexrenderer",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,10 +21,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.latexrenderer.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [["./modules/latex-native/app.plugin.js"]]
   }
 }
