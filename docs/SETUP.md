@@ -58,7 +58,7 @@ source ~/.zshrc
 
 ```bash
 # If cloning existing project
-git clone <repository-url>
+git clone https://github.com/AmanCrafts/LatexRenderer.git
 cd LatexRenderer
 
 # If creating from scratch
