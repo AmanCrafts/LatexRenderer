@@ -6,12 +6,7 @@ if (Platform.OS === 'android') {
     try {
         const ExpoModulesCore = require('expo-modules-core');
         LatexNativeModule = ExpoModulesCore.requireNativeModule('LatexNative');
-        console.log('[LatexNative] Module loaded successfully:', !!LatexNativeModule);
-        if (LatexNativeModule) {
-            console.log('[LatexNative] Module methods:', Object.keys(LatexNativeModule));
-        }
     } catch (e) {
-        console.warn('[LatexNative] Failed to load module:', e.message);
         LatexNativeModule = null;
     }
 }

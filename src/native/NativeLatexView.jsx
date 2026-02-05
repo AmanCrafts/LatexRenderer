@@ -17,7 +17,6 @@ const imageCache = new Map();
 const MAX_CACHE_SIZE = 100;
 
 const IS_NATIVE = Platform.OS === 'android' && isNativeAvailable();
-console.log('[NativeLatexView] Platform:', Platform.OS, 'isNativeAvailable:', isNativeAvailable(), 'IS_NATIVE:', IS_NATIVE);
 
 export const getIsNativeMode = () => IS_NATIVE;
 

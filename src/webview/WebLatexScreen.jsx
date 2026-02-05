@@ -11,7 +11,7 @@ import LatexWebView from './LatexWebView';
 import { SAMPLE_LATEX_DATA, PERFORMANCE_TEST_DATA } from '../utils/SampleLatex';
 import { PerformanceLogger, usePerformanceLogger } from '../utils/PerformanceLogger';
 
-const WebLatexScreen = ({ onSwitchRenderer }) => {
+const WebLatexScreen = ({ onSwitchRenderer, onOpenPlayground }) => {
     const [showPerformanceTest, setShowPerformanceTest] = useState(false);
     const [stats, setStats] = useState(null);
     const [refreshing, setRefreshing] = useState(false);
@@ -122,12 +122,16 @@ const WebLatexScreen = ({ onSwitchRenderer }) => {
                         onPress={handleToggleData}
                     >
                         <Text style={[styles.toggleButtonText, showPerformanceTest && styles.toggleButtonTextActive]}>
-                            {showPerformanceTest ? '50-Item Stress Test' : 'Sample Data'}
+                            {showPerformanceTest ? 'Stress Test' : 'Samples'}
                         </Text>
                     </TouchableOpacity>
 
+                    <TouchableOpacity style={styles.playgroundButton} onPress={onOpenPlayground}>
+                        <Text style={styles.playgroundButtonText}>Playground</Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity style={styles.switchButton} onPress={onSwitchRenderer}>
-                        <Text style={styles.switchButtonText}>Switch to Native</Text>
+                        <Text style={styles.switchButtonText}>Native</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -296,6 +300,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     switchButtonText: {
+        fontSize: 13,
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    playgroundButton: {
+        flex: 1,
+        padding: 10,
+        borderRadius: 8,
+        backgroundColor: '#6200ee',
+        alignItems: 'center',
+    },
+    playgroundButtonText: {
         fontSize: 13,
         color: '#fff',
         fontWeight: 'bold',

@@ -15,7 +15,7 @@ import { PerformanceLogger } from '../utils/PerformanceLogger';
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const IS_NATIVE_MODE = getIsNativeMode();
 
-const NativeLatexScreen = ({ onSwitchRenderer }) => {
+const NativeLatexScreen = ({ onSwitchRenderer, onOpenPlayground }) => {
     const [showPerformance, setShowPerformance] = useState(false);
     const [showDebug, setShowDebug] = useState(false);
     const [stats, setStats] = useState({ count: 0, mean: 0, cacheHits: 0, cacheMisses: 0 });
@@ -150,9 +150,14 @@ const NativeLatexScreen = ({ onSwitchRenderer }) => {
         <SafeAreaView style={styles.container} edges={['top']}>
             <View style={styles.titleBar}>
                 <Text style={styles.title}>Native Renderer</Text>
-                <TouchableOpacity style={styles.switchButton} onPress={onSwitchRenderer}>
-                    <Text style={styles.switchText}>Switch to WebView</Text>
-                </TouchableOpacity>
+                <View style={styles.titleButtons}>
+                    <TouchableOpacity style={styles.playgroundBtn} onPress={onOpenPlayground}>
+                        <Text style={styles.playgroundBtnText}>Playground</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.switchButton} onPress={onSwitchRenderer}>
+                        <Text style={styles.switchText}>WebView</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
             <FlatList
@@ -189,6 +194,21 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: '#fff',
+    },
+    titleButtons: {
+        flexDirection: 'row',
+        gap: 8,
+    },
+    playgroundBtn: {
+        backgroundColor: '#6200ee',
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 16,
+    },
+    playgroundBtnText: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: '500',
     },
     switchButton: {
         backgroundColor: 'rgba(255,255,255,0.2)',

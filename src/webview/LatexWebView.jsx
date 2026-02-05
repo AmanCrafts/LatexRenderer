@@ -68,7 +68,6 @@ const LatexWebView = ({
                 }
             }
         } catch (parseError) {
-            console.warn('LatexWebView: Failed to parse message', parseError);
         }
     }, [itemId, onRenderComplete, onError]);
 

@@ -140,7 +140,6 @@ class PerformanceLoggerClass {
       try {
         listener(event);
       } catch (error) {
-        console.warn('PerformanceLogger: Listener error', error);
       }
     });
   }
